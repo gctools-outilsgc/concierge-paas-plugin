@@ -12,3 +12,5 @@ concierge_paas_plugin/tests/tests_nodb/__pycache__/
 concierge_paas_plugin/migrations/__pycache__/
 
 concierge_paas_plugin/helper/__pycache__/
+
+*.db
