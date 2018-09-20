@@ -9,5 +9,8 @@ class CreateProfileTest(TestCase):
         self.configuration = Configuration(token=new_token, end_point="http://localhost:8001/protected", default=True)
         self.configuration.save()
     def test_createBasicProfile(self):
-        Profile().create("123", "username", "user@user.com")
-        #Profile()
+        userid = "123"
+        Profile.create(userid, "username", "user@user.com")
+        response = Profile().queryprofile(123)
+        print(response)
+        # self.assertEqual(response, "12564")

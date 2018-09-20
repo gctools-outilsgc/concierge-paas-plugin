@@ -3,3 +3,7 @@
 
 .pytest_cache/
 *.db
+
+node_modules/
+
+*.lock

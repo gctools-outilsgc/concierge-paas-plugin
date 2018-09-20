@@ -6,5 +6,6 @@ class TokenGeneratorTest(SimpleTestCase):
         token = Generator().create()
         self.assertIsNotNone(token)
     def test_expectTokenIsValid(self):
-        token = Generator().create()
-        self.assertEqual(token.__len__(), 40)
+        token = Generator().create("ooteyiwoatewa")
+        print(str(token))
+        self.assertEqual(str(token).__len__(), 4)
