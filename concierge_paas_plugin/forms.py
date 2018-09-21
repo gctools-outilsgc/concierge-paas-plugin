@@ -1,7 +1,6 @@
 from .models import Configuration
 from django import forms
 from django.forms import ModelForm, PasswordInput
-from .helper.TokenGenerator import Generator
 
 class AdminForm(ModelForm):
     token = forms.CharField(widget=PasswordInput())
@@ -12,4 +11,4 @@ class AdminForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(AdminForm).__init__(*args, **kwargs)
         if 'instance' in kwargs.keys():
-            self.fields['token'].initial = Generator().create("123456")
+            self.fields['token'].initial = "123"

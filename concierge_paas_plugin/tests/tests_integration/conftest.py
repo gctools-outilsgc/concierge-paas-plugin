@@ -9,7 +9,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'concierge_paas_plugin.tests.tes
 
 # `pytest` automatically calls this function once when tests are run.
 def pytest_configure():
-    settings.DEBUG = False
+    settings.DEBUG = True
 
     settings.PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
