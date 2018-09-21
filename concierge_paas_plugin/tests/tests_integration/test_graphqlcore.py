@@ -1,16 +1,31 @@
 from django.test import TestCase
-from concierge_paas_plugin.helper.TokenGenerator import Generator
-from concierge_paas_plugin.models import Configuration
-from concierge_paas_plugin.views import Profile
+from django.urls import reverse_lazy
+from concierge_paas_plugin.models import Configuration, User
+from concierge_paas_plugin.views import create, queryprofile
+from rest_framework.test import force_authenticate, APIRequestFactory
 
 class CreateProfileTest(TestCase):
     def setUp(self):
-        new_token = Generator().create()
-        self.configuration = Configuration(token=new_token, end_point="http://localhost:8001/protected", default=True)
+        self.configuration = Configuration(token='sometoken', end_point="http://localhost:8001/protected", default=True)
         self.configuration.save()
+
+        self.user = User(username='user',name='somename',email='username@name.test')
+        self.user.save()
     def test_createBasicProfile(self):
         userid = "123"
-        Profile.create(userid, "username", "user@user.com")
-        response = Profile().queryprofile(123)
+        user = User.objects.get(username=self.user.username)
+
+        create_request = self.createRequest(user, 'create')
+        create(create_request, userid, "username", "user@user.com")
+
+        queryProfile_request = self.createRequest(user, 'queryprofile')
+        response = queryprofile(queryProfile_request, 123)
         print(response)
         # self.assertEqual(response, "12564")
+
+    def createRequest(self, user, viewName):
+        factory = APIRequestFactory()
+        request = factory.get(reverse_lazy(viewName))
+        request.user = user
+        force_authenticate(request, user=user)
+        return request
