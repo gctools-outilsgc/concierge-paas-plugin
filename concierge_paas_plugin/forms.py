@@ -9,6 +9,4 @@ class AdminForm(ModelForm):
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
-        super(AdminForm).__init__(*args, **kwargs)
-        # if 'instance' in kwargs.keys():
-        #     self.fields['token'].initial = "123"
+        super(AdminForm, self).__init__(*args, **kwargs)
