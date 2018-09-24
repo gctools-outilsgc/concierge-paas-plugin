@@ -17,10 +17,11 @@ class Migration(migrations.Migration):
             name='Configuration',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('trigger', models.BooleanField(default=False)),
                 ('end_point', models.URLField()),
                 ('token', models.CharField(max_length=50)),
+                ('trigger', models.BooleanField(default=False)),
                 ('default', models.BooleanField(default=False)),
             ],
         ),
+        migrations.RunSQL([('INSERT INTO concierge_paas_plugin_configuration (trigger, end_point, token, \'default\') values (%s, %s, %s)', [True, 'https://graphql.gccollab.ca/protected', 'aeb69b36cc2d332be878887971a61bf16411c3c0', True])])
     ]

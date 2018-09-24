@@ -6,7 +6,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='concierge_paas_plugin',
-    version='0.2',
+    version='0.5',
     packages=find_packages(),
     include_package_data=True,
     license='OSI Approved :: European Union Public Licence 1.1 (EUPL 1.1)',
