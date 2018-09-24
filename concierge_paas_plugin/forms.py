@@ -10,5 +10,5 @@ class AdminForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AdminForm).__init__(*args, **kwargs)
-        if 'instance' in kwargs.keys():
-            self.fields['token'].initial = "123"
+        # if 'instance' in kwargs.keys():
+        #     self.fields['token'].initial = "123"

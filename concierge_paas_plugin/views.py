@@ -1,6 +1,7 @@
 import requests
 from django.contrib.auth.decorators import login_required
 from .models import Configuration
+from .helper import graphql_query, graphql_mutation
 
 @login_required
 def create_profile(request, id, name, email):
@@ -12,8 +13,7 @@ def create_profile(request, id, name, email):
         retrys = 3
         success = False
 
-        query = {'query': 'mutation{createProfile(gcId: "' + str(id) + '", name: "' + name + '", email:"' +
-                          email + '"){gcID, name, email}}'}
+        query = graphql_mutation.createProfile(id, name, email)
 
         print('begin user create')
         while not success and attempt < retrys:
@@ -30,9 +30,7 @@ def create_profile(request, id, name, email):
 @login_required
 def queryprofile(request, userId):
     # Get rest of information from Profile as a Service
-    query = {
-        'query': 'query{profiles(gcID: "' + str(userId) + '"){name, email, avatar, mobilePhone, officePhone,' +
-                 'address{streetAddress,city, province, postalCode, country}}}'}
+    query = graphql_query.QueryProfile(userId)
     return ProfileHelper.executeQuery(query)
 
 class ProfileHelper():
