@@ -2,6 +2,7 @@ import requests
 from django.contrib.auth.decorators import login_required
 from oidc_provider.lib.claims import ScopeClaims
 from .helper import graphql_query, graphql_mutation, graphql_post, model_configuration
+from django.utils.translation import gettext as _
 
 @login_required
 def create_profile(request, id, name, email):
