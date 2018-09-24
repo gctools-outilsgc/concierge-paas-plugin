@@ -7,3 +7,7 @@
 node_modules/
 
 *.lock
+
+concierge_paas_plugin\.egg-info/
+
+dist/
