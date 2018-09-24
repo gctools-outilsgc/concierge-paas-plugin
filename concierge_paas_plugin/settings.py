@@ -10,17 +10,21 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'concierge_paas_plugin',
+    'user_sessions'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'user_sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+ALLOWED_HOSTS = []
+DEBUG =True
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
