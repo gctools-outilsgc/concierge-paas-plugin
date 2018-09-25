@@ -14,10 +14,9 @@ def create_profile(id, name, email):
 
         query = graphql_mutation.createProfile(id, name, email)
 
-        print('begin user create')
         while not success and attempt < retrys:
-            response = requests.post(configuration.end_point, headers={'Authorization': 'Token ' + configuration.token}, data=query)
-            print('response_'+ str(response))
+            response = requests.post(configuration.end_point, headers={'Authorization': 'Token ' + configuration.token},
+                                    data=query)
             if not response.status_code == requests.codes.ok:
                 attempt = attempt + 1
             else:

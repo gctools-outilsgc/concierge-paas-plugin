@@ -23,5 +23,5 @@ class Migration(migrations.Migration):
                 ('default', models.BooleanField(default=False)),
             ],
         ),
-        migrations.RunSQL([('INSERT INTO concierge_paas_plugin_configuration (trigger, end_point, token, \'default\') values (%s, %s, %s)', [True, 'https://graphql.gccollab.ca/protected', 'aeb69b36cc2d332be878887971a61bf16411c3c0', True])])
+        migrations.RunSQL([('INSERT INTO concierge_paas_plugin_configuration (trigger, end_point, token, \'default\') values (%s, %s, %s, %s)', [True, 'https://graphql.gccollab.ca/protected', 'aeb69b36cc2d332be878887971a61bf16411c3c0', True])])
     ]
