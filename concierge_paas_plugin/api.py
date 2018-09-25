@@ -44,8 +44,8 @@ def queryProfileByEmail(email):
     query = graphql_query.QueryProfileByEmail(email)
     return graphql_post.executeQuery(query)
 
-def deleteProfile(userId):
-    query = graphql_mutation.deleteProfile(userId)
+def disableProfile(userId):
+    query = graphql_mutation.disableProfile(userId)
     return graphql_post.executeQuery(query)
 
 def userinfo(claims, user):

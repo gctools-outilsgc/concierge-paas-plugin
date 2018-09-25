@@ -1,5 +1,5 @@
 from django.test import TransactionTestCase
-from concierge_paas_plugin.api import create_profile, queryprofile, deleteProfile
+from concierge_paas_plugin.api import create_profile, queryprofile, disableProfile
 from concierge_paas_plugin.models import Configuration
 
 
@@ -15,7 +15,7 @@ class CreateProfileTest(TransactionTestCase):
         create_profile(self.userId, self.username, self.email)
 
     def tearDown(self):
-        deleteProfile(self.userId)
+        disableProfile(self.userId)
 
     def test_createBasicProfile(self):
         response = queryprofile(self.userId)
