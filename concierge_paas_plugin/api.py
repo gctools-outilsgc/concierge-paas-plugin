@@ -12,6 +12,12 @@ def create_profile(id, name, email):
         retrys = 3
         success = False
 
+        if(name in queryProfileByName(name)):
+            return None
+
+        if(email in queryProfileByEmail(email)):
+            return None
+
         query = graphql_mutation.createProfile(id, name, email)
 
         while not success and attempt < retrys:
@@ -30,6 +36,17 @@ def queryprofile(userId):
     query = graphql_query.QueryProfile(userId)
     return graphql_post.executeQuery(query)
 
+def queryProfileByName(userName):
+    query = graphql_query.QueryProfileByUserName(userName)
+    return graphql_post.executeQuery(query)
+
+def queryProfileByEmail(email):
+    query = graphql_query.QueryProfileByEmail(email)
+    return graphql_post.executeQuery(query)
+
+def deleteProfile(userId):
+    query = graphql_mutation.deleteProfile(userId)
+    return graphql_post.executeQuery(query)
 
 def userinfo(claims, user):
     """

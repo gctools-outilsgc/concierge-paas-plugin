@@ -3,9 +3,9 @@ from django.db.models import Q
 
 # Create your models here.
 class Configuration(models.Model):
-    trigger = models.BooleanField(default=False, null=False)
     end_point = models.URLField(blank=False, null=False)
     token = models.CharField(max_length=50, blank=False, null=False)
+    trigger = models.BooleanField(default=False, null=False)
     default = models.BooleanField(default=False, null=False)
 
     def __str__(self):

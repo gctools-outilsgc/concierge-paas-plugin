@@ -1,5 +1,5 @@
 from django.test import TransactionTestCase
-from concierge_paas_plugin.api import create_profile, queryprofile
+from concierge_paas_plugin.api import create_profile, queryprofile, deleteProfile
 from concierge_paas_plugin.models import Configuration
 
 
@@ -9,18 +9,18 @@ class CreateProfileTest(TransactionTestCase):
         self.configuration.save()
 
         self.userId = 123456
+        self.username = "custom_username"
+        self.email = self.username + '@sometest.com'
+
+        create_profile(self.userId, self.username, self.email)
 
     def tearDown(self):
-        # rollback user
-        pass
+        deleteProfile(self.userId)
 
     def test_createBasicProfile(self):
-        username = "custom_username"
-        email = username + '@sometest.com'
-        create_profile(self.userId, username, email)
-
         response = queryprofile(self.userId)
-        self.assertTrue(username in str(response))
+        self.assertTrue(self.username in str(response))
 
-    def test_userAlreadyExist(selfs):
-        pass
+    def test_userAlreadyExist(self):
+        response = create_profile(self.userId, self.username, self.email)
+        self.assertIsNone(response)
