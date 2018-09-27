@@ -1,0 +1,13 @@
+*.pyc
+\.idea/
+
+.pytest_cache/
+*.db
+
+node_modules/
+
+*.lock
+
+concierge_paas_plugin\.egg-info/
+
+dist/
